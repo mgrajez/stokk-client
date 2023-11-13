@@ -1,54 +1,55 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-// import the service file since we need it to send/get the data to/from the server
-import service from "./../services/file-upload.service.js";
+import service from "../services/service.js";
+// import axios from "axios";
 
 function AddPhoto() {
+  const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-
+  const [width, setWidth] = useState("");
+  const [height, setHeight] = useState("");
+  const [portfolioUrl, setPortfolioUrl] = useState("");
+  const fileInput = useRef();
   const navigate = useNavigate();
 
-  // ******** this method handles the file upload ********
-  const handleFileUpload = (e) => {
-    // console.log("The file to be uploaded is: ", e.target.files[0]);
-
-    const uploadData = new FormData();
-
-    // imageUrl => this name has to be the same as in the model since we pass
-    // req.body to .create() method when creating a new movie in '/api/movies' POST route
-    uploadData.append("url", e.target.files[0]);
-
-    service
-      .uploadImage(uploadData)
-      .then((response) => {
-        // console.log("response is: ", response);
-        // response carries "fileUrl" which we can use to update the state
-        setUrl(response.fileUrl);
-      })
-      .catch((err) => console.log("Error while uploading the file: ", err));
-  };
   // ********  this method submits the form ********
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(description, fileInput.current.files[0]);
+
+    // You'll need a FormData to send all of the information. because we are sending files, not just text
+
+    // In the Form Data, the keys should be the same as your model (preferably)
+
+    // You will need to send a token in your request (You need to be logged in to send a picture!)
+
+    // To send a token, check how the context is doing :)
+
+    const uploadData = new FormData();
+
+    uploadData.append("url", fileInput.current.files[0]);
+    uploadData.append("description", description);
+    uploadData.append("width", width);
+    uploadData.append("height", height);
+    uploadData.append("portfolioUrl", portfolioUrl);
 
     service
-      .createPhoto({ description, imageUrl })
-      .then((res) => {
-        // console.log("added new movie: ", res);
-
-        // Reset the form
+      .post(`/photos`, uploadData)
+      .then((response) => {
+        setUrl("");
         setDescription("");
-        setImageUrl("");
-
-        // navigate to another page
-        navigate("/");
+        setWidth("");
+        setHeight("");
+        setUserId("");
+        setPortfolioUrl("");
+        console.log(response);
       })
-      .catch((err) => console.log("Error while adding the new movie: ", err));
+      .catch((error) => console.log(error));
   };
+
   return (
     <div>
-      <h2>New Image</h2>
+      <h2>Add New Image</h2>
       <form onSubmit={handleSubmit}>
         <label>Description</label>
         <textarea
@@ -57,8 +58,29 @@ function AddPhoto() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+        <label>Width</label>
+        <input
+          type="number"
+          value={width}
+          onChange={(e) => setWidth(e.target.value)}
+        />
 
-        <input type="file" onChange={(e) => handleFileUpload(e)} />
+        <label>Height</label>
+        <input
+          type="number"
+          value={height}
+          onChange={(e) => setHeight(e.target.value)}
+        />
+
+        <label>Portfolio URL</label>
+        <input
+          type="text"
+          value={portfolioUrl}
+          onChange={(e) => setPortfolioUrl(e.target.value)}
+        />
+
+        <label>Add image</label>
+        <input type="file" ref={fileInput} />
 
         <button type="submit">Save new image</button>
       </form>
