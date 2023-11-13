@@ -20,6 +20,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/" />
         <Route path="/photos/:photoId" element={<PhotoPage />} />
         <Route
           path="/photos/add"

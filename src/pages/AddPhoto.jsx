@@ -49,7 +49,7 @@ function AddPhoto() {
 
   return (
     <div>
-      <h2>Add New Image</h2>
+      <h2>Add New Image 🖼️</h2>
       <form onSubmit={handleSubmit}>
         <label>Description</label>
         <textarea

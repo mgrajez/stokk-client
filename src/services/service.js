@@ -26,6 +26,14 @@ export const getUserPhotos = async () => {
   }
 };
 
+export const modifyUserPhoto = async (photoId, updatedData) => {
+  try {
+    await api.put(`${baseURL}/photos/${photoId}`, updatedData);
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const removeUserPhoto = async (photoId) => {
   try {
     await api.delete(`${baseURL}/photos/${photoId}`);
@@ -35,5 +43,3 @@ export const removeUserPhoto = async (photoId) => {
 };
 
 export default api;
-
-// `${baseURL}/photos/mine`
