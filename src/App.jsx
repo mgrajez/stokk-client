@@ -20,7 +20,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/:photoId" element={<PhotoPage />} />
+        <Route path="/photos/:photoId" element={<PhotoPage />} />
         <Route
           path="/photos/add"
           element={

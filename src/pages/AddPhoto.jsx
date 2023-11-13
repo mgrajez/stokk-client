@@ -58,18 +58,19 @@ function AddPhoto() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <label>Width</label>
-        <input
-          type="number"
-          value={width}
-          onChange={(e) => setWidth(e.target.value)}
-        />
 
         <label>Height</label>
         <input
           type="number"
           value={height}
           onChange={(e) => setHeight(e.target.value)}
+        />
+
+        <label>Width</label>
+        <input
+          type="number"
+          value={width}
+          onChange={(e) => setWidth(e.target.value)}
         />
 
         <label>Portfolio URL</label>

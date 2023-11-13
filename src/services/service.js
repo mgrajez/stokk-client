@@ -11,4 +11,13 @@ api.interceptors.request.use((request) => {
   return request;
 });
 
+export const getUserPhotos = async () => {
+  try {
+    const response = await api.get("/photos/mine");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default api;
