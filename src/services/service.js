@@ -1,7 +1,13 @@
 import axios from "axios";
 
+// const api = axios.create({
+//   baseURL: "http://localhost:5005/api",
+// });
+
+const baseURL = "http://localhost:5005/api";
+
 const api = axios.create({
-  baseURL: "http://localhost:5005/api",
+  baseURL: baseURL,
 });
 
 api.interceptors.request.use((request) => {
@@ -13,11 +19,21 @@ api.interceptors.request.use((request) => {
 
 export const getUserPhotos = async () => {
   try {
-    const response = await api.get("/photos/mine");
+    const response = await api.get(`${baseURL}/photos/mine`);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
+export const removeUserPhoto = async (photoId) => {
+  try {
+    await api.delete(`${baseURL}/photos/${photoId}`);
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default api;
+
+// `${baseURL}/photos/mine`
