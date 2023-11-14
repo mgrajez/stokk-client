@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseURL =
-  `${process.env.VITE_BACKEND}/api` || "https://stokk.netlify.app";
+  `${import.meta.env.VITE_BACKEND_URL}/api` || "https://stokk.netlify.app";
 
 const api = axios.create({
   baseURL: baseURL,
@@ -16,7 +16,7 @@ api.interceptors.request.use((request) => {
 
 export const getUserPhotos = async () => {
   try {
-    const response = await api.get(`${baseURL}/photos/mine`);
+    const response = await api.get(`/photos/mine`);
     return response.data;
   } catch (error) {
     throw error;
@@ -25,7 +25,7 @@ export const getUserPhotos = async () => {
 
 export const modifyUserPhoto = async (photoId, updatedData) => {
   try {
-    await api.put(`${baseURL}/photos/${photoId}`, updatedData);
+    await api.put(`/photos/${photoId}`, updatedData);
   } catch (error) {
     throw error;
   }
@@ -33,7 +33,7 @@ export const modifyUserPhoto = async (photoId, updatedData) => {
 
 export const removeUserPhoto = async (photoId) => {
   try {
-    await api.delete(`${baseURL}/photos/${photoId}`);
+    await api.delete(`/photos/${photoId}`);
   } catch (error) {
     throw error;
   }

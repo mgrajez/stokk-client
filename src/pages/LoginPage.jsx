@@ -1,9 +1,7 @@
 import { useState, useContext } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-
-const API_URL = process.env.VITE_BACKEND || "https://stokk.netlify.app";
+import service from "./../services/service";
 
 function LoginPage(props) {
   const [email, setEmail] = useState("");
@@ -21,8 +19,8 @@ function LoginPage(props) {
     e.preventDefault();
     const requestBody = { email, password };
 
-    axios
-      .post(`${API_URL}/auth/login`, requestBody)
+    service
+      .post(`/auth/login`, requestBody)
       .then((response) => {
         console.log("JWT token", response.data.authToken);
 
