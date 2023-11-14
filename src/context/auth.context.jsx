@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const API_URL = "https://stokk-app.onrender.com";
+
+const API_URL = process.env.VITE_BACKEND || "https://stokk.netlify.app";
 
 const AuthContext = React.createContext();
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "https://stokk-app.onrender.com";
+const API_URL = process.env.VITE_BACKEND || "https://stokk.netlify.app";
 
 function SignupPage(props) {
   const [email, setEmail] = useState("");

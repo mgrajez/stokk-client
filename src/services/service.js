@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = "https://stokk-app.onrender.com";
+const baseURL =
+  `${process.env.VITE_BACKEND}/api` || "https://stokk.netlify.app";
 
 const api = axios.create({
   baseURL: baseURL,
