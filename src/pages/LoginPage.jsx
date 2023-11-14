@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
-const API_URL = "https://stokk-app.onrender.com/api";
+const API_URL = "https://stokk-app.onrender.com";
 
 function LoginPage(props) {
   const [email, setEmail] = useState("");
