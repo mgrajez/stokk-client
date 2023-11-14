@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://stokk-app.onrender.com/api";
+const baseURL = "https://stokk-app.onrender.com";
 
 const api = axios.create({
   baseURL: baseURL,
