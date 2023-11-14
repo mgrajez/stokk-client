@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseURL =
-  `${import.meta.env.VITE_BACKEND_URL}/api` || "https://stokk.netlify.app";
+  `${import.meta.env.VITE_BACKEND_URL}` || "https://stokk.netlify.app";
 
 const api = axios.create({
   baseURL: baseURL,
