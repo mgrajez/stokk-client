@@ -8,59 +8,57 @@ import MyAccountPage from "./pages/MyAccountPage";
 import ErrorPage from "./pages/ErrorPage";
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
+import Navbar2 from "./components/Navbar/Navbar2";
 
 function App() {
   return (
-    <div className="App">
-      {/* <Navbar /> */}
-      <nav>
-        <Link to="/"> Home </Link>
-        <Link to="/photos/add"> Add a photo </Link>
-      </nav>
-
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/" />
-        <Route path="/photos/:photoId" element={<PhotoPage />} />
-        <Route
-          path="/photos/add"
-          element={
-            <IsPrivate>
-              {" "}
-              <AddPhoto />{" "}
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <IsAnon>
-              {" "}
-              <SignupPage />{" "}
-            </IsAnon>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <IsAnon>
-              {" "}
-              <LoginPage />{" "}
-            </IsAnon>
-          }
-        />
-        <Route
-          path="/myaccount"
-          element={
-            <IsPrivate>
-              {" "}
-              <MyAccountPage />{" "}
-            </IsPrivate>
-          }
-        />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </div>
+    <>
+      <Navbar2 />
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/" />
+          <Route path="/photos/:photoId" element={<PhotoPage />} />
+          <Route
+            path="/photos/add"
+            element={
+              <IsPrivate>
+                {" "}
+                <AddPhoto />{" "}
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <IsAnon>
+                {" "}
+                <SignupPage />{" "}
+              </IsAnon>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <IsAnon>
+                {" "}
+                <LoginPage />{" "}
+              </IsAnon>
+            }
+          />
+          <Route
+            path="/myaccount"
+            element={
+              <IsPrivate>
+                {" "}
+                <MyAccountPage />{" "}
+              </IsPrivate>
+            }
+          />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 

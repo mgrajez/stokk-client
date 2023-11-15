@@ -4,12 +4,24 @@ import {
   removeUserPhoto,
   modifyUserPhoto,
 } from "../services/service";
+import { getFavoritePhotos } from "../services/service";
 
 export default function MyAccountPage() {
   const [userPhotos, setUserPhotos] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [modifiedDescription, setModifiedDescription] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [favoritePhotos, setFavoritePhotos] = useState([]);
+
+  const fetchFavoritePhotos = async () => {
+    try {
+      const favorites = await getFavoritePhotos();
+      console.log("Favorite photos:", favorites);
+      setFavoritePhotos(favorites);
+    } catch (error) {
+      console.error("Error fetching favorite photos:", error);
+    }
+  };
 
   const fetchUserPhotos = async () => {
     try {
@@ -56,6 +68,10 @@ export default function MyAccountPage() {
   };
 
   useEffect(() => {
+    fetchFavoritePhotos();
+  }, []);
+
+  useEffect(() => {
     fetchUserPhotos();
   }, []);
 
@@ -66,7 +82,22 @@ export default function MyAccountPage() {
   return (
     <>
       <div>My Account</div>
-      <div>My Uploaded Photos 📷</div>
+      <div>
+        <h2>My Favorite Photos ❤️</h2>
+        {favoritePhotos.length === 0 ? (
+          <p>No favorite photos yet.</p>
+        ) : (
+          <ul>
+            {favoritePhotos.map((favorite) => (
+              <li key={favorite._id}>
+                <img src={favorite.photoId.url} style={{ width: 200 }} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <h2>My Uploaded Photos 📷</h2>
       {userPhotos.length > 0 ? (
         userPhotos.map((photo) => (
           <div className="" key={photo._id}>

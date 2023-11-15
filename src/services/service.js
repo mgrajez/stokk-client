@@ -39,4 +39,29 @@ export const removeUserPhoto = async (photoId) => {
   }
 };
 
+export const addFavorite = async (photoId) => {
+  try {
+    await api.post(`/favorites/${photoId}`);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const removeFavorite = async (favoriteId) => {
+  try {
+    await api.delete(`/favorites/${favoriteId}`);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getFavoritePhotos = async () => {
+  try {
+    const response = await api.get("/favorites");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default api;
