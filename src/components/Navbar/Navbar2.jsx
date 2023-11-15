@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import StokkLogo from "../../assets/StokkLogo.png";
 import { AuthContext } from "../../context/auth.context";
 import "../Navbar/Navbar2.css";
 
-function Navbar2() {
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+function Navbar2({ onLogoClick }) {
+  const { isLoggedIn, logOutUser } = useContext(AuthContext);
+
   return (
     <>
       <div className="container">

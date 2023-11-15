@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import service from "../services/service";
+import Searchbar from "../components/Searchbar";
 import {
   addFavorite,
   removeFavorite,
@@ -9,18 +10,39 @@ import {
 function HomePage() {
   const [photos, setPhotos] = useState([]);
   const [favoritePhotos, setFavoritePhotos] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Run the effect after the initial render to get a list of photos from the server
+  // useEffect(() => {
+  //   console.log("Search Query:", searchQuery);
+  //   service
+  //     .get("/photos", {
+  //       params: {
+  //         q: searchQuery,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       console.log("API Response:", response.data);
+  //       setPhotos(response.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  //   fetchFavoritePhotos();
+  // }, [searchQuery]);
+
   useEffect(() => {
+    // Construct the URL based on whether there is a search query or not
+    const url = searchQuery ? `/photos?q=${searchQuery}` : "/photos";
+
     service
-      .get("/photos")
+      .get(url)
       .then((response) => {
-        // console.log("response", response);
+        console.log("API Response:", response.data);
         setPhotos(response.data);
       })
       .catch((err) => console.log(err));
+
     fetchFavoritePhotos();
-  }, []);
+  }, [searchQuery]);
 
   const fetchFavoritePhotos = async () => {
     try {
@@ -28,7 +50,7 @@ function HomePage() {
       console.log("Favorite photos:", favorites);
       setFavoritePhotos(favorites.map((fav) => fav.photoId._id));
     } catch (error) {
-      console.error("Error fetching favorite photos:", error);
+      console.error("Error fetching favorite photos:", error.message);
     }
   };
 
@@ -74,22 +96,25 @@ function HomePage() {
   console.log(favoritePhotos);
 
   return (
-    <div className="HomePage">
-      {photos &&
-        photos.map((photo) => {
-          const isFav = favoritePhotos.includes(photo._id);
-          return (
-            <div key={photo._id}>
-              <p>{photo.description}</p>
-              <img src={photo.url} alt="photo" width="200" />
-              <button onClick={() => handleFavoriteClick(photo._id, isFav)}>
-                {isFav ? "💔" : "❤️"}
-              </button>
-              <button onClick={() => handleDownloadClick(photo)}>⇩</button>
-            </div>
-          );
-        })}
-    </div>
+    <>
+      <Searchbar onSearch={(query) => setSearchQuery(query)} />
+      <div className="HomePage">
+        {photos &&
+          photos.map((photo) => {
+            const isFav = favoritePhotos.includes(photo._id);
+            return (
+              <div key={photo._id}>
+                <p>{photo.description}</p>
+                <img src={photo.url} alt="photo" width="200" />
+                <button onClick={() => handleFavoriteClick(photo._id, isFav)}>
+                  {isFav ? "💔" : "❤️"}
+                </button>
+                <button onClick={() => handleDownloadClick(photo)}>⇩</button>
+              </div>
+            );
+          })}
+      </div>
+    </>
   );
 }
 

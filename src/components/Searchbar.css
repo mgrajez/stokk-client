@@ -1,0 +1,36 @@
+/* body,
+html {
+  margin: 0;
+  padding: 0;
+} */
+
+.search-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.search-container {
+  margin: 0, auto;
+  width: 50%;
+  height: 35px;
+  border-radius: 15px;
+  border: 2px solid #69a2b0;
+  background-color: #fff;
+  display: flex;
+}
+
+.search-input {
+  border: none;
+  font-size: 0.9rem;
+  background: none;
+  width: 100%;
+  font-weight: 100;
+  margin-top: 4px;
+  margin-left: 10px;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
