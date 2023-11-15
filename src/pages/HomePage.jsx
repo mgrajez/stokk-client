@@ -45,9 +45,15 @@ function HomePage() {
       setPhotos((prevPhotos) =>
         prevPhotos.map((photo) =>
           photo._id === photoId
-            ? { ...photo, isFavorite: isFavorite ? false : true }
+            ? { ...photo, isFavorite: !isFavorite ? false : true }
             : photo
         )
+      );
+
+      setFavoritePhotos((prevFavorites) =>
+        isFavorite
+          ? prevFavorites.filter((fav) => fav !== photoId)
+          : [...prevFavorites, photoId]
       );
     } catch (error) {
       console.error(error);
