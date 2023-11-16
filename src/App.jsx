@@ -8,13 +8,13 @@ import MyAccountPage from "./pages/MyAccountPage";
 import ErrorPage from "./pages/ErrorPage";
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
-import Navbar2 from "./components/Navbar/Navbar2";
+import Navbar from "./components/Navbar/Navbar2";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <Navbar2 />
+      <Navbar />
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
