@@ -43,6 +43,7 @@ function SignupPage(props) {
           <form className="form" onSubmit={handleSignupSubmit}>
             <label className="form-label">Email:</label>
             <input
+              className="form-input"
               type="email"
               name="email"
               value={email}
