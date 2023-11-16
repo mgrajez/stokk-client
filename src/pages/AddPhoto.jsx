@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../services/service.js";
-// import axios from "axios";
+import "../pages/AddPhoto.css";
 
 function AddPhoto() {
   const [url, setUrl] = useState("");
@@ -48,44 +48,54 @@ function AddPhoto() {
   };
 
   return (
-    <div>
-      <h2>Add New Image 🖼️</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Description</label>
-        <textarea
-          type="text"
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+    <>
+      <div className="add-photo-page">
+        <div className="form-container">
+          <h2>Add New Image 🖼️</h2>
+          <form className="form" onSubmit={handleSubmit}>
+            <label className="form-label">Description</label>
+            <textarea
+              className="form-input"
+              type="text"
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
 
-        <label>Height</label>
-        <input
-          type="number"
-          value={height}
-          onChange={(e) => setHeight(e.target.value)}
-        />
+            <label className="form-label">Height</label>
+            <input
+              className="form-input"
+              type="number"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+            />
 
-        <label>Width</label>
-        <input
-          type="number"
-          value={width}
-          onChange={(e) => setWidth(e.target.value)}
-        />
+            <label className="form-label">Width</label>
+            <input
+              className="form-input"
+              type="number"
+              value={width}
+              onChange={(e) => setWidth(e.target.value)}
+            />
 
-        <label>Portfolio URL</label>
-        <input
-          type="text"
-          value={portfolioUrl}
-          onChange={(e) => setPortfolioUrl(e.target.value)}
-        />
+            <label className="form-label">Portfolio URL</label>
+            <input
+              className="form-input"
+              type="text"
+              value={portfolioUrl}
+              onChange={(e) => setPortfolioUrl(e.target.value)}
+            />
 
-        <label>Add image</label>
-        <input type="file" ref={fileInput} />
+            <label className="form-label">Add image</label>
+            <input className="file-button" type="file" ref={fileInput} />
 
-        <button type="submit">Save new image</button>
-      </form>
-    </div>
+            <button className="form-submit" type="submit">
+              Save new image
+            </button>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }
 

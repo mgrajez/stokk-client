@@ -34,6 +34,8 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Open Sans";
+  height: 25px;
 }
 
 @media only screen and (width < 820px) {

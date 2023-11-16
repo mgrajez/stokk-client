@@ -107,12 +107,7 @@ function HomePage() {
               return (
                 <div className="image-container" key={photo._id}>
                   {/* <p>{photo.description}</p> */}
-                  <img
-                    className="home-image"
-                    src={photo.url}
-                    alt="photo"
-                    loading="lazy"
-                  />
+                  <img className="home-image" src={photo.url} alt="photo" />
                   <div className="image-buttons">
                     <button
                       className="like-button"

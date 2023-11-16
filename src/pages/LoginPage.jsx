@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import service from "./../services/service";
+import "../pages/LoginPage.css";
 
 function LoginPage(props) {
   const [email, setEmail] = useState("");
@@ -35,28 +36,41 @@ function LoginPage(props) {
   };
 
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
+    <>
+      <div className="login-page">
+        <div className="form-container">
+          <h1>Login</h1>
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+          <form className="form" onSubmit={handleLoginSubmit}>
+            <label className="form-label">Email:</label>
+            <input
+              className="form-input"
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleEmail}
+            />
 
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+            <label className="form-label">Password:</label>
+            <input
+              className="form-input"
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+            />
 
-        <button type="submit">Login</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <button className="form-submit" type="submit">
+              Login
+            </button>
+          </form>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
-    </div>
+          <p>Don't have an account yet?</p>
+          <Link to={"/signup"}> Sign Up</Link>
+        </div>
+      </div>
+    </>
   );
 }
 

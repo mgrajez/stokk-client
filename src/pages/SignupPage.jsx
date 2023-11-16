@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import service from "./../services/service";
+import "../pages/SignupPage.css";
 
 function SignupPage(props) {
   const [email, setEmail] = useState("");
@@ -34,37 +35,50 @@ function SignupPage(props) {
   };
 
   return (
-    <div className="SignupPage">
-      <h1>Sign Up</h1>
+    <>
+      <div className="signup-container">
+        <div className="form-container">
+          <h1>Sign Up</h1>
 
-      <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+          <form className="form" onSubmit={handleSignupSubmit}>
+            <label className="form-label">Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleEmail}
+            />
 
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+            <label className="form-label">Password:</label>
+            <input
+              className="form-input"
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+            />
 
-        <label>Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={handleUsername}
-        />
+            <label className="form-label">Username:</label>
+            <input
+              className="form-input"
+              type="text"
+              name="username"
+              value={username}
+              onChange={handleUsername}
+            />
 
-        <button type="submit">Sign Up</button>
-      </form>
+            <button className="form-submit" type="submit">
+              Sign Up
+            </button>
+          </form>
 
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
-    </div>
+          <p>Already have account?</p>
+          <Link to={"/login"}> Login</Link>
+        </div>
+      </div>
+    </>
   );
 }
 

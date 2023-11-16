@@ -93,14 +93,11 @@ body {
   font-size: 0.9rem;
   background-color: #fff;
   color: #69a2b0;
-  /* transition: transform 0.3s;
-  transition: background-color 1s ease-out 10ms; */
   margin-bottom: 1rem;
 }
 
 .remove-button:hover,
 .modify-button:hover {
-  /* animation: bubble 0.4s ease; */
   background-color: #69a2b0;
   color: #fff;
 }
