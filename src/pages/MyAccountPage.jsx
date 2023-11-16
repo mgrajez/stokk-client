@@ -5,6 +5,7 @@ import {
   modifyUserPhoto,
 } from "../services/service";
 import { getFavoritePhotos } from "../services/service";
+import "../pages/MyAccountPage.css";
 
 export default function MyAccountPage() {
   const [userPhotos, setUserPhotos] = useState([]);
@@ -81,50 +82,81 @@ export default function MyAccountPage() {
 
   return (
     <>
-      <div>My Account</div>
-      <div>
-        <h2>My Favorite Photos ❤️</h2>
-        {favoritePhotos.length === 0 ? (
-          <p>No favorite photos yet.</p>
-        ) : (
-          <ul>
-            {favoritePhotos.map((favorite) => (
-              <li key={favorite._id}>
-                <img src={favorite.photoId.url} style={{ width: 200 }} />
-              </li>
-            ))}
-          </ul>
+      <div className="my-account-title">My Account</div>
+      <div className="account-container">
+        <div>
+          <h2 className="account-titles">My Favorite Photos ❤️</h2>
+          {favoritePhotos.length === 0 ? (
+            <p className="no-favorite">No favorite photos yet.</p>
+          ) : (
+            <ul className="favorite-container">
+              {favoritePhotos.map((favorite) => (
+                <li key={favorite._id}>
+                  <img
+                    className="favorite-image"
+                    src={favorite.photoId.url}
+                    style={{ width: 200 }}
+                  />
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <h2 className="account-titles">My Uploaded Photos 📷</h2>
+        <div className="uploads-container">
+          {userPhotos.length > 0 ? (
+            userPhotos.map((photo) => (
+              <div className="" key={photo._id}>
+                <img src={photo.url} alt="" style={{ width: 200 }} />
+                <p className="photo-description">{photo.description}</p>
+                <div className="account-buttons">
+                  <button
+                    className="modify-button"
+                    onClick={() => handleOpenModal(photo)}
+                  >
+                    Modify
+                  </button>
+                  <button
+                    className="remove-button"
+                    onClick={() => handleRemovePhoto(photo._id)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
+
+        {/* Modal for Modification */}
+        {showModal && (
+          <div className="modal-container">
+            <h3>Modify Photo 📝</h3>
+            <label className="modify-description">New Description:</label>
+            <input
+              className="modal-input"
+              type="text"
+              value={modifiedDescription}
+              onChange={(e) => setModifiedDescription(e.target.value)}
+            />
+            <button
+              className="modal-button modal-submit"
+              onClick={handleModifyPhoto}
+            >
+              Submit
+            </button>
+            <button
+              className="modal-button modal-cancel"
+              onClick={handleCloseModal}
+            >
+              Cancel
+            </button>
+          </div>
         )}
       </div>
-
-      <h2>My Uploaded Photos 📷</h2>
-      {userPhotos.length > 0 ? (
-        userPhotos.map((photo) => (
-          <div className="" key={photo._id}>
-            <p>{photo.description}</p>
-            <img src={photo.url} alt="" style={{ width: 200 }} />
-            <button onClick={() => handleOpenModal(photo)}>Modify</button>
-            <button onClick={() => handleRemovePhoto(photo._id)}>Remove</button>
-          </div>
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
-
-      {/* Modal for Modification */}
-      {showModal && (
-        <div>
-          <h3>Modify Photo</h3>
-          <label>New Description:</label>
-          <input
-            type="text"
-            value={modifiedDescription}
-            onChange={(e) => setModifiedDescription(e.target.value)}
-          />
-          <button onClick={handleModifyPhoto}>Submit</button>
-          <button onClick={handleCloseModal}>Cancel</button>
-        </div>
-      )}
     </>
   );
 }

@@ -1,0 +1,158 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.account-container {
+  margin-left: 2rem;
+}
+
+.my-account-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #69a2b0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.my-account-title:after,
+.my-account-title:before {
+  content: "\00a0\00a0\00a0\00a0\00a0";
+  text-decoration: line-through;
+}
+
+/* When no favorite photos are shown - title */
+.no-favorite {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #69a2b0;
+}
+
+.account-titles {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-top: 4rem;
+}
+
+/* Favorite section */
+
+.favorite-container {
+  list-style: none;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.favorite-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Uploads section */
+
+.uploads-container {
+  margin-right: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  text-wrap: wrap;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.photo-description {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 100;
+  text-align: center;
+  max-width: 200px;
+}
+
+.account-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.remove-button,
+.modify-button {
+  border: 1.5px solid #69a2b0;
+  border-radius: 0.9rem;
+  padding: 6px 11px;
+  cursor: pointer;
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-size: 0.9rem;
+  background-color: #fff;
+  color: #69a2b0;
+  /* transition: transform 0.3s;
+  transition: background-color 1s ease-out 10ms; */
+  margin-bottom: 1rem;
+}
+
+.remove-button:hover,
+.modify-button:hover {
+  /* animation: bubble 0.4s ease; */
+  background-color: #69a2b0;
+  color: #fff;
+}
+
+/* Modal styling */
+
+.modal-container {
+  margin-top: 3rem;
+}
+
+.modal-input {
+  width: 30%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  display: block;
+  font-family: "Open Sans";
+  border: 1.4px solid #333;
+  border-radius: 0.4rem;
+}
+
+.modify-description {
+  font-family: "Open Sans";
+  font-size: 1rem;
+  font-weight: 600;
+  display: block;
+}
+
+/* Style for the buttons */
+.modal-button {
+  padding: 8px 15px;
+  margin-right: 10px;
+  margin-bottom: 10rem;
+  cursor: pointer;
+  font-family: "Open Sans";
+  border: 1px solid #333;
+  border-radius: 0.6rem;
+  color: #333;
+}
+
+@media only screen and (width < 820px) {
+  .account-titles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1.5rem;
+  }
+  .favorite-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-input {
+    width: 80%;
+  }
+}
