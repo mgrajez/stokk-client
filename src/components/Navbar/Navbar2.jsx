@@ -18,7 +18,7 @@ function Navbar2({ onLogoClick }) {
             </Link>
             <Link className="hover-underline" to="/photos/add">
               {" "}
-              Add photo{" "}
+              Add Photo{" "}
             </Link>
             <Link className="hover-underline" to="/myaccount">
               {" "}

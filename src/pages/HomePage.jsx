@@ -6,6 +6,7 @@ import {
   removeFavorite,
   getFavoritePhotos,
 } from "../services/service";
+import "../pages/HomePage.css";
 
 function HomePage() {
   const [photos, setPhotos] = useState([]);
@@ -98,21 +99,38 @@ function HomePage() {
   return (
     <>
       <Searchbar onSearch={(query) => setSearchQuery(query)} />
-      <div className="HomePage">
-        {photos &&
-          photos.map((photo) => {
-            const isFav = favoritePhotos.includes(photo._id);
-            return (
-              <div key={photo._id}>
-                <p>{photo.description}</p>
-                <img src={photo.url} alt="photo" width="200" />
-                <button onClick={() => handleFavoriteClick(photo._id, isFav)}>
-                  {isFav ? "💔" : "❤️"}
-                </button>
-                <button onClick={() => handleDownloadClick(photo)}>⇩</button>
-              </div>
-            );
-          })}
+      <div className="home-container">
+        <div className="home-page">
+          {photos &&
+            photos.map((photo) => {
+              const isFav = favoritePhotos.includes(photo._id);
+              return (
+                <div className="image-container" key={photo._id}>
+                  {/* <p>{photo.description}</p> */}
+                  <img
+                    className="home-image"
+                    src={photo.url}
+                    alt="photo"
+                    loading="lazy"
+                  />
+                  <div className="image-buttons">
+                    <button
+                      className="like-button"
+                      onClick={() => handleFavoriteClick(photo._id, isFav)}
+                    >
+                      {isFav ? "💔" : "❤️"}
+                    </button>
+                    <button
+                      className="download-button"
+                      onClick={() => handleDownloadClick(photo)}
+                    >
+                      ⇩
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
       </div>
     </>
   );

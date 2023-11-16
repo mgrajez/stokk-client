@@ -1,14 +1,15 @@
-/* body,
+body,
 html {
   margin: 0;
   padding: 0;
-} */
+}
 
 .search-section {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  margin-bottom: 5rem;
 }
 
 .search-container {
