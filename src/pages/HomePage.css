@@ -42,9 +42,11 @@ body {
   transition: opacity 0.3s;
   z-index: 2;
   cursor: pointer;
-  border: 1.5px solid #f1eaea;
+  border: none;
   border-radius: 8px;
   padding: 5px 8px;
+  height: 30px;
+  width: 30px;
 }
 
 .download-button {
@@ -55,9 +57,11 @@ body {
   transition: opacity 0.3s;
   z-index: 2;
   cursor: pointer;
-  border: 1.5px solid #f1eaea;
+  border: none;
   border-radius: 8px;
   padding: 5px 8px;
+  height: 30px;
+  width: 30px;
 }
 
 .image-container:hover .like-button,

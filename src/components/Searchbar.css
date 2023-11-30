@@ -46,4 +46,7 @@ html {
   .search-section {
     margin-bottom: 2rem;
   }
+  .search-input {
+    height: 20px;
+  }
 }
