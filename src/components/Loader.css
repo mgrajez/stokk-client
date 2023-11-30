@@ -1,4 +1,4 @@
-#loading-container {
+.loading-container {
   height: 30vh;
   width: 100vw;
   display: flex;
@@ -7,17 +7,17 @@
   justify-content: center;
 }
 
-#loading-text {
+.loading-text {
   text-align: center;
-  font-size: 3rem;
+  font-size: 1.6rem;
   font-weight: 700;
 }
 
-#progress-bar {
-  width: 19rem;
-  height: 1.3rem;
-  border-radius: 1.3rem;
-  background: repeating-linear-gradient(135deg, #9747ff 0 10px, #fff 0 20px) 0/0%
+.progress-bar {
+  width: 17rem;
+  height: 1rem;
+  border-radius: 1rem;
+  background: repeating-linear-gradient(135deg, #69a2b0 0 10px, #fff 0 20px) 0/0%
       no-repeat,
     repeating-linear-gradient(135deg, #ddd 0 10px, #eee 0 20px) 0/100%;
   animation: progress 10s infinite;
