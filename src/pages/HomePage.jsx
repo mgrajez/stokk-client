@@ -6,29 +6,14 @@ import {
   removeFavorite,
   getFavoritePhotos,
 } from "../services/service";
+import Loader from "../components/Loader";
 import "../pages/HomePage.css";
 
 function HomePage() {
   const [photos, setPhotos] = useState([]);
   const [favoritePhotos, setFavoritePhotos] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-
-  // Run the effect after the initial render to get a list of photos from the server
-  // useEffect(() => {
-  //   console.log("Search Query:", searchQuery);
-  //   service
-  //     .get("/photos", {
-  //       params: {
-  //         q: searchQuery,
-  //       },
-  //     })
-  //     .then((response) => {
-  //       console.log("API Response:", response.data);
-  //       setPhotos(response.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  //   fetchFavoritePhotos();
-  // }, [searchQuery]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Construct the URL based on whether there is a search query or not
@@ -39,6 +24,7 @@ function HomePage() {
       .then((response) => {
         console.log("API Response:", response.data);
         setPhotos(response.data);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
 
@@ -100,32 +86,36 @@ function HomePage() {
     <>
       <Searchbar onSearch={(query) => setSearchQuery(query)} />
       <div className="home-container">
-        <div className="home-page">
-          {photos &&
-            photos.map((photo) => {
-              const isFav = favoritePhotos.includes(photo._id);
-              return (
-                <div className="image-container" key={photo._id}>
-                  {/* <p>{photo.description}</p> */}
-                  <img className="home-image" src={photo.url} alt="photo" />
-                  <div className="image-buttons">
-                    <button
-                      className="like-button"
-                      onClick={() => handleFavoriteClick(photo._id, isFav)}
-                    >
-                      {isFav ? "💔" : "❤️"}
-                    </button>
-                    <button
-                      className="download-button"
-                      onClick={() => handleDownloadClick(photo)}
-                    >
-                      ⇩
-                    </button>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="home-page">
+            {photos &&
+              photos.map((photo) => {
+                const isFav = favoritePhotos.includes(photo._id);
+                return (
+                  <div className="image-container" key={photo._id}>
+                    {/* <p>{photo.description}</p> */}
+                    <img className="home-image" src={photo.url} alt="photo" />
+                    <div className="image-buttons">
+                      <button
+                        className="like-button"
+                        onClick={() => handleFavoriteClick(photo._id, isFav)}
+                      >
+                        {isFav ? "💔" : "❤️"}
+                      </button>
+                      <button
+                        className="download-button"
+                        onClick={() => handleDownloadClick(photo)}
+                      >
+                        ⇩
+                      </button>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-        </div>
+                );
+              })}
+          </div>
+        )}
       </div>
     </>
   );

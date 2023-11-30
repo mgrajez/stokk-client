@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import StokkLogo from "../../assets/StokkLogo.png";
 import { AuthContext } from "../../context/auth.context";
-import "../Navbar/Navbar2.css";
+import "../Navbar/Navbar.css";
 
 function Navbar({ onLogoClick }) {
   const { isLoggedIn, logOutUser } = useContext(AuthContext);
@@ -48,4 +48,4 @@ function Navbar({ onLogoClick }) {
   );
 }
 
-export default Navbar2;
+export default Navbar;

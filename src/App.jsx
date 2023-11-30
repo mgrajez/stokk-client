@@ -1,6 +1,5 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import PhotoPage from "./pages/PhotoPage";
 import AddPhoto from "./pages/AddPhoto";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
@@ -8,7 +7,7 @@ import MyAccountPage from "./pages/MyAccountPage";
 import ErrorPage from "./pages/ErrorPage";
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
-import Navbar from "./components/Navbar/Navbar2";
+import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
 
 function App() {
@@ -18,8 +17,6 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/" />
-          <Route path="/photos/:photoId" element={<PhotoPage />} />
           <Route
             path="/photos/add"
             element={

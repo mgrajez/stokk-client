@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../components/Searchbar.css";
 
+// Passing onSearch prop
 function Searchbar({ onSearch }) {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
+  // handleSearch function once invoked calls onSearch
   const handleSearch = () => {
     onSearch(searchQuery);
     navigate(`/?q=${searchQuery}`);
