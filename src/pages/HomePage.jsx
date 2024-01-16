@@ -19,6 +19,9 @@ function HomePage() {
     // Construct the URL based on whether there is a search query or not
     const url = searchQuery ? `/photos?q=${searchQuery}` : "/photos";
 
+    console.log({ searchQuery });
+    console.log({ url });
+
     service
       .get(url)
       .then((response) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   getUserPhotos,
   removeUserPhoto,
@@ -13,6 +13,12 @@ export default function MyAccountPage() {
   const [modifiedDescription, setModifiedDescription] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [favoritePhotos, setFavoritePhotos] = useState([]);
+
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const fetchFavoritePhotos = async () => {
     try {
@@ -70,11 +76,14 @@ export default function MyAccountPage() {
 
   useEffect(() => {
     fetchFavoritePhotos();
+    fetchUserPhotos();
   }, []);
 
   useEffect(() => {
-    fetchUserPhotos();
-  }, []);
+    if (showModal) {
+      scrollToBottom();
+    }
+  }, [showModal]);
 
   useEffect(() => {
     console.log(userPhotos);
@@ -154,6 +163,7 @@ export default function MyAccountPage() {
             >
               Cancel
             </button>
+            <div ref={messagesEndRef} />
           </div>
         )}
       </div>
