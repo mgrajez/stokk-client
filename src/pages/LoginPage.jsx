@@ -70,6 +70,12 @@ function LoginPage(props) {
           <Link to={"/signup"}> Sign Up</Link>
         </div>
       </div>
+      <div className="test-account">
+        <p>
+          <span className="test-font">Email:</span> test.account@test.com <br />{" "}
+          <span className="test-font">Password:</span> Test.Account.1
+        </p>
+      </div>
     </>
   );
 }

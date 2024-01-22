@@ -50,3 +50,16 @@ body {
   background-color: #fff;
   color: #69a2b0;
 }
+
+.test-account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  margin: 1rem;
+}
+
+.test-font {
+  font-weight: 700;
+  color: #69a2b0;
+}
